@@ -1,0 +1,293 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    --background: #f8fafc;
+    --foreground: #0f172a;
+    --card: rgba(255, 255, 255, 0.85);
+    --card-foreground: #0f172a;
+    --primary: #6366f1;
+    --primary-hover: #4f46e5;
+    --primary-glow: rgba(99, 102, 241, 0.3);
+    --accent: #8b5cf6;
+    --accent-pink: #ec4899;
+    --border: #e2e8f0;
+    --border-glow: rgba(99, 102, 241, 0.2);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+  }
+
+  h1, h2, h3, h4, h5, h6, .font-heading {
+    font-family: var(--font-space), var(--font-inter), -apple-system, sans-serif;
+    letter-spacing: -0.025em;
+  }
+
+  code, pre, kbd, .font-mono {
+    font-family: var(--font-mono), ui-monospace, SFMono-Regular, monospace;
+  }
+}
+
+/* AI Data Grid & Dot Pattern Backgrounds */
+.bg-ai-grid {
+  background-size: 32px 32px;
+  background-image: 
+    linear-gradient(to right, rgba(99, 102, 241, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(99, 102, 241, 0.05) 1px, transparent 1px);
+}
+
+.bg-ai-dots {
+  background-size: 24px 24px;
+  background-image: radial-gradient(rgba(99, 102, 241, 0.12) 1px, transparent 1px);
+}
+
+/* AI Glowing Blob */
+.ai-glow-blob {
+  position: absolute;
+  filter: blur(80px);
+  border-radius: 9999px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Glassmorphic Cards */
+.glass-panel {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+.glass-card {
+  background: rgba(255, 255, 255, 0.82);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  box-shadow: 0 4px 20px -4px rgba(99, 102, 241, 0.05);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.glass-card:hover {
+  background: rgba(255, 255, 255, 0.95);
+  border-color: rgba(165, 180, 252, 0.8);
+  box-shadow: 0 16px 32px -8px rgba(99, 102, 241, 0.14), 0 0 0 1px rgba(99, 102, 241, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Gradient Glow Buttons */
+.btn-ai-gradient {
+  background: linear-gradient(135deg, #6366f1 0%, #7c3aed 50%, #8b5cf6 100%);
+  color: white;
+  box-shadow: 0 4px 14px 0 rgba(99, 102, 241, 0.35);
+  transition: all 0.2s ease;
+}
+
+.btn-ai-gradient:hover {
+  background: linear-gradient(135deg, #4f46e5 0%, #6d28d9 50%, #7c3aed 100%);
+  box-shadow: 0 6px 20px 0 rgba(99, 102, 241, 0.5);
+  transform: scale(1.01);
+}
+
+.btn-ai-gradient:active {
+  transform: scale(0.98);
+}
+
+/* Gradient Pill Badges */
+.badge-ai-gradient {
+  background: linear-gradient(135deg, rgba(238, 242, 255, 0.9) 0%, rgba(245, 243, 255, 0.9) 100%);
+  border: 1px solid rgba(199, 210, 254, 0.8);
+  color: #4f46e5;
+}
+
+/* Custom Scrollbars */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f9;
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* Code Highlighting Styles (GitHub Light style) */
+pre code.hljs {
+  display: block;
+  overflow-x: auto;
+  padding: 1.25rem;
+  background: #f8fafc;
+  color: #1e293b;
+  border-radius: 0.75rem;
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 0.875rem;
+  line-height: 1.6;
+  border: 1px solid #e2e8f0;
+}
+
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-subst {
+  color: #7c3aed;
+  font-weight: 600;
+}
+
+.hljs-string,
+.hljs-title,
+.hljs-section,
+.hljs-attribute,
+.hljs-literal,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-addition {
+  color: #0284c7;
+}
+
+.hljs-comment,
+.hljs-quote,
+.hljs-deletion,
+.hljs-meta {
+  color: #94a3b8;
+  font-style: italic;
+}
+
+.hljs-function .hljs-title,
+.hljs-class .hljs-title {
+  color: #4f46e5;
+  font-weight: 600;
+}
+
+.hljs-number {
+  color: #ea580c;
+}
+
+/* Markdown Prose Styles */
+.prose {
+  color: #334155;
+  max-width: 100%;
+}
+
+.prose h1 {
+  color: #0f172a;
+  font-size: 2rem;
+  font-weight: 800;
+  letter-spacing: -0.025em;
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  line-height: 1.25;
+}
+
+.prose h2 {
+  color: #0f172a;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-top: 2rem;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.35rem;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.prose h3 {
+  color: #1e293b;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-top: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.prose p {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  line-height: 1.75;
+  font-size: 1.05rem;
+}
+
+.prose ul, .prose ol {
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+  padding-left: 1.5rem;
+}
+
+.prose ul {
+  list-style-type: disc;
+}
+
+.prose ol {
+  list-style-type: decimal;
+}
+
+.prose li {
+  margin-top: 0.35rem;
+  margin-bottom: 0.35rem;
+  line-height: 1.6;
+}
+
+.prose blockquote {
+  border-left: 4px solid #6366f1;
+  background-color: #f8faff;
+  padding: 1rem 1.25rem;
+  margin: 1.5rem 0;
+  border-radius: 0 0.5rem 0.5rem 0;
+  color: #334155;
+  font-style: normal;
+}
+
+.prose table {
+  width: 100%;
+  text-align: left;
+  margin: 1.5rem 0;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.prose th {
+  background-color: #f1f5f9;
+  color: #0f172a;
+  font-weight: 600;
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e8f0;
+}
+
+.prose td {
+  padding: 0.75rem 1rem;
+  border: 1px solid #e2e8f0;
+}
+
+.prose tr:nth-child(even) {
+  background-color: #fafbfc;
+}
+
+.prose a {
+  color: #6366f1;
+  text-decoration: underline;
+  text-underline-offset: 3px;
+  font-weight: 500;
+  transition: color 0.15s ease;
+}
+
+.prose a:hover {
+  color: #4f46e5;
+}
+
+.prose code:not(pre code) {
+  background-color: #f1f5f9;
+  color: #4338ca;
+  padding: 0.2rem 0.4rem;
+  border-radius: 0.375rem;
+  font-size: 0.875em;
+  font-family: var(--font-mono), ui-monospace, monospace;
+}
