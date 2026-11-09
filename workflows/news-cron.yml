@@ -1,0 +1,17 @@
+
+name: SYNAPSE AI Auto News
+
+on:
+  schedule:
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+
+jobs:
+  update-news:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fetch Latest News
+        run: |
+          curl --fail --show-error --retry 3 \
+            -H "Authorization: Bearer ${{ secrets.CRON_SECRET }}" \
+            "https://ai-blog-website-beta.vercel.app/api/cron/news"
