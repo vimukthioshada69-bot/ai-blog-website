@@ -4,6 +4,7 @@ import { getPublishedPosts, getCategories } from '@/lib/data/posts';
 import { PostCard } from '@/components/post/PostCard';
 import { BreadcrumbJsonLd } from '@/components/seo/JsonLd';
 import Link from 'next/link';
+import { getSiteUrl } from '@/lib/utils';
 
 interface SearchPageProps {
   searchParams: Promise<{ q?: string; category?: string; sort?: string }>;
@@ -11,7 +12,7 @@ interface SearchPageProps {
 
 export async function generateMetadata({ searchParams }: SearchPageProps): Promise<Metadata> {
   const { q } = await searchParams;
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://synapse-ai-2026.vercel.app';
+  const baseUrl = getSiteUrl();
   const canonicalUrl = `${baseUrl}/search`;
   const title = q ? `Search results for "${q}" | SYNAPSE 2026` : 'Search AI Articles & Guides | SYNAPSE 2026';
   const description = 'Search across 2026 AI news, deep learning explainers, free tools directory, and prompt engineering tactics.';
@@ -19,6 +20,7 @@ export async function generateMetadata({ searchParams }: SearchPageProps): Promi
   return {
     title,
     description,
+    robots: { index: false, follow: true },
     alternates: {
       canonical: canonicalUrl,
     },

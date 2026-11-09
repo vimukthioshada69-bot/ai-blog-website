@@ -65,5 +65,5 @@ export function getSiteUrl(): string {
   if (process.env.VERCEL_URL) {
     return `https://${process.env.VERCEL_URL}`;
   }
-  return 'https://synapse-ai-2026.vercel.app';
+  return 'https://ai-blog-website-beta.vercel.app';
 }

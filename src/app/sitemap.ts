@@ -21,21 +21,16 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // 1. Homepage
   const homeRoute: MetadataRoute.Sitemap = [
+    { url: `${baseUrl}/news-feed`, changeFrequency: 'daily', priority: 0.7 },
+    { url: `${baseUrl}/tools`, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/tools/image-compressor`, changeFrequency: 'monthly', priority: 0.8 },
     {
       url: baseUrl,
-      lastModified: new Date(),
       changeFrequency: 'daily',
       priority: 1.0,
     },
     {
-      url: `${baseUrl}/search`,
-      lastModified: new Date(),
-      changeFrequency: 'weekly',
-      priority: 0.8,
-    },
-    {
       url: `${baseUrl}/author`,
-      lastModified: new Date(),
       changeFrequency: 'weekly',
       priority: 0.8,
     },
@@ -48,7 +43,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     .filter((sp) => !categorySlugs.has(sp.page_key))
     .map((page) => ({
       url: `${baseUrl}/${page.page_key}`,
-      lastModified: new Date(page.updated_at || new Date()),
+      lastModified: page.updated_at ? new Date(page.updated_at) : undefined,
       changeFrequency: 'monthly',
       priority: page.page_key === 'about' || page.page_key === 'contact' ? 0.8 : 0.7,
     }));
@@ -58,7 +53,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   if (!staticUrls.has(`${baseUrl}/about`)) {
     staticPageRoutes.push({
       url: `${baseUrl}/about`,
-      lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     });
@@ -66,7 +60,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   if (!staticUrls.has(`${baseUrl}/contact`)) {
     staticPageRoutes.push({
       url: `${baseUrl}/contact`,
-      lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.8,
     });
@@ -75,7 +68,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 3. Category routes (/[category-slug]/)
   const categoryRoutes: MetadataRoute.Sitemap = categories.map((cat) => ({
     url: `${baseUrl}/${cat.slug}`,
-    lastModified: new Date(),
     changeFrequency: 'daily',
     priority: 0.85,
   }));
@@ -85,7 +77,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const categorySlug = post.category?.slug || 'ai-news';
     return {
       url: `${baseUrl}/${categorySlug}/${post.slug}`,
-      lastModified: new Date(post.updated_at || post.published_at),
+      lastModified: post.updated_at || post.published_at ? new Date(post.updated_at || post.published_at) : undefined,
       changeFrequency: 'weekly',
       priority: 0.9,
     };
@@ -94,7 +86,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 5. Author routes (/author/[author-slug]/)
   const authorRoutes: MetadataRoute.Sitemap = authors.map((author) => ({
     url: `${baseUrl}/author/${author.slug}`,
-    lastModified: new Date(author.created_at || new Date()),
+    lastModified: author.created_at ? new Date(author.created_at) : undefined,
     changeFrequency: 'weekly',
     priority: 0.75,
   }));
@@ -102,7 +94,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 6. Tag routes (/tag/[tag-slug]/)
   const tagRoutes: MetadataRoute.Sitemap = tags.map(({ tag }) => ({
     url: `${baseUrl}/tag/${encodeURIComponent(tag.toLowerCase())}`,
-    lastModified: new Date(),
     changeFrequency: 'weekly',
     priority: 0.65,
   }));

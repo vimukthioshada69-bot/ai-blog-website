@@ -1,4 +1,5 @@
 import { Metadata } from 'next';
+import Link from 'next/link';
 import { 
   getPublishedPosts, 
   getCategories, 
@@ -137,6 +138,7 @@ export default async function HomePage() {
         category={freeToolsCategory}
         posts={freeToolsPosts}
       />
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"><div className="rounded-3xl bg-indigo-50 border border-indigo-100 p-7 sm:p-10 flex flex-col sm:flex-row gap-6 items-start sm:items-center justify-between"><div><span className="text-indigo-700 text-xs font-bold tracking-widest">NEW · FREE ONLINE TOOL</span><h2 className="text-2xl sm:text-3xl font-extrabold text-slate-900 mt-2">Compress images in seconds</h2><p className="text-slate-600 mt-2">Private, browser-based JPEG and WebP compression. No signup needed.</p></div><Link href="/tools/image-compressor" className="shrink-0 rounded-xl bg-indigo-600 text-white px-6 py-3 font-bold hover:bg-indigo-700">Try Image Compressor →</Link></div></section>
       <FreeToolsSection posts={freeToolsPosts} />
 
       {/* 6. Gaming & Tech AI: Secondary Category preview row (compact) */}

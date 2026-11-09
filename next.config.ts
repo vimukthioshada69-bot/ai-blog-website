@@ -43,11 +43,6 @@ const nextConfig: NextConfig = {
             key: 'Permissions-Policy',
             value: 'camera=(), microphone=(), geolocation=()',
           },
-          // AI Answer Engine Optimization: Allow unlimited snippet & image extraction
-          {
-            key: 'X-Robots-Tag',
-            value: 'index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1',
-          },
         ],
       },
       // Ensure llms.txt is served with correct content type

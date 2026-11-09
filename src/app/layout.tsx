@@ -99,15 +99,10 @@ export const metadata: Metadata = {
       'max-snippet': -1,
     },
   },
-  alternates: {
-    canonical: siteUrl,
-  },
   other: {
     // AI content declaration meta tags
-    'ai-content-declaration': 'human-authored',
     'content-language': 'en',
     // Allow AI reading
-    'robots': 'max-snippet:-1, max-image-preview:large, max-video-preview:-1',
   },
 };
 
