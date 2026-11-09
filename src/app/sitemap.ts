@@ -22,6 +22,7 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   // 1. Homepage
   const homeRoute: MetadataRoute.Sitemap = [
     { url: `${baseUrl}/tools`, changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${baseUrl}/tools/background-remover`, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/tools/image-compressor`, changeFrequency: 'monthly', priority: 0.8 },
     {
       url: baseUrl,
