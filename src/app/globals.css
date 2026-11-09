@@ -291,3 +291,9 @@ pre code.hljs {
   font-size: 0.875em;
   font-family: var(--font-mono), ui-monospace, monospace;
 }
+
+/* Responsive safeguards for legacy editorial UI */
+html, body { max-width: 100%; overflow-x: clip; }
+img, video, iframe { max-width: 100%; }
+.admin-table-scroll { width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+@media (max-width: 767px) { main { min-width: 0; } main table { min-width: 600px; } main:has(table) { overflow-x: auto; } }

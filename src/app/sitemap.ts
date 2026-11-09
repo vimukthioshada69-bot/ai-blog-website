@@ -21,7 +21,6 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
 
   // 1. Homepage
   const homeRoute: MetadataRoute.Sitemap = [
-    { url: `${baseUrl}/news-feed`, changeFrequency: 'daily', priority: 0.7 },
     { url: `${baseUrl}/tools`, changeFrequency: 'monthly', priority: 0.8 },
     { url: `${baseUrl}/tools/image-compressor`, changeFrequency: 'monthly', priority: 0.8 },
     {

@@ -55,7 +55,6 @@ export function Navbar({ posts = [] }: NavbarProps) {
 
   const navLinks = [
     { label: 'Online Tools', href: '/tools', icon: Compass, desc: 'Free browser-based image utilities' },
-    { label: 'Live News Feed', href: '/news-feed', icon: Zap, desc: 'Auto-updated source headlines' },
     { label: 'AI News', href: '/ai-news', icon: Zap, desc: 'Foundation models & breakthroughs' },
     { label: 'Learn AI', href: '/learn-ai', icon: GraduationCap, desc: 'Zero-to-hero learning roadmaps' },
     { label: 'Deep Learning', href: '/deep-learning', icon: Cpu, desc: 'Transformers & neural research' },

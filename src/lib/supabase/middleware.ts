@@ -23,9 +23,10 @@ export async function updateSession(request: NextRequest) {
   const isLoginPage = pathname === '/admin/login';
 
   if (!isConfigured) {
-    // In dev mode without configured Supabase, allow browsing public pages and render warning on admin
     if (isAdminRoute && !isLoginPage) {
-      // Allow demo viewing or redirect
+      const url = request.nextUrl.clone();
+      url.pathname = '/admin/login';
+      return NextResponse.redirect(url);
     }
     return supabaseResponse;
   }
@@ -57,7 +58,9 @@ export async function updateSession(request: NextRequest) {
   } = await supabase.auth.getUser();
 
   // Admin route protection: redirect unauthenticated users to /admin/login
-  if (isAdminRoute && !isLoginPage && !user) {
+  const adminEmails = (process.env.ADMIN_EMAILS || '').split(',').map(e => e.trim().toLowerCase()).filter(Boolean);
+  const isAdmin = !!user?.email && adminEmails.includes(user.email.toLowerCase());
+  if (isAdminRoute && !isLoginPage && !isAdmin) {
     const url = request.nextUrl.clone();
     url.pathname = '/admin/login';
     url.searchParams.set('redirectTo', pathname);
@@ -65,7 +68,7 @@ export async function updateSession(request: NextRequest) {
   }
 
   // If user is already logged in and tries to access /admin/login, redirect to /admin
-  if (isLoginPage && user) {
+  if (isLoginPage && isAdmin) {
     const url = request.nextUrl.clone();
     url.pathname = '/admin';
     return NextResponse.redirect(url);

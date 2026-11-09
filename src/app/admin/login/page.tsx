@@ -25,9 +25,12 @@ function LoginForm() {
       const res = await loginAdmin(null, formData);
       if (res?.error) {
         setState(res);
+      } else {
+        window.location.assign(redirectTo);
       }
     } catch {
-      // In Next.js, redirect() throws an error to perform redirect
+      // Server action redirects are handled by Next.js; surface other failures.
+      setState({ error: 'Unable to sign in. Please retry.' });
     } finally {
       setLoading(false);
     }
@@ -52,7 +55,6 @@ function LoginForm() {
             type="email"
             name="email"
             required
-            defaultValue="admin@example.com"
             placeholder="admin@example.com"
             className="w-full pl-10 pr-4 py-2.5 bg-slate-50 border border-slate-200 rounded-xl text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-indigo-500/20 focus:border-indigo-500"
           />
