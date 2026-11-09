@@ -1,13 +1,1 @@
-<<<<<<< HEAD
-
-{
-  "crons": [
-    {
-      "path": "/api/cron/news",
-      "schedule": "0 0 * * *"
-    }
-  ]
-}
-=======
 {}
->>>>>>> 8a468530c5c74fe1469feeab2110f929ad1060e5
